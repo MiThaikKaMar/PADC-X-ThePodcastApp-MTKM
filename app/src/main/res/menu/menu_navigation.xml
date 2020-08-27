@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools">
+<item
+    android:id="@+id/item_pod_cast"
+    android:icon="@drawable/home"
+    tools:ignore="MenuTitle" />
+<item
+    android:id="@+id/item_categories"
+  android:icon="@drawable/search"
+    tools:ignore="MenuTitle" />
+<item
+    android:id="@+id/item_your_shows"
+    android:icon="@drawable/download"
+    tools:ignore="MenuTitle" />
+<item
+    android:id="@+id/item_profile"
+    android:icon="@drawable/profile"
+    tools:ignore="MenuTitle" />
+</menu>

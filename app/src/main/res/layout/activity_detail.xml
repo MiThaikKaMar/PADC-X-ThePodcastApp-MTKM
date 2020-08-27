@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DetailActivity"
+    android:background="@color/colorFullWhite">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/rl_detail_img"
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+
+                <com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.components.RoundedCornerImageView
+                    android:id="@+id/iv_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/category" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:layout_margin="@dimen/margin_large"
+                    />
+
+                <Button
+                    android:id="@+id/btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/margin_large"
+                    android:background="@drawable/rounded_corner_yellow"
+                    android:paddingStart="@dimen/margin_medium"
+                    android:paddingEnd="@dimen/margin_medium"
+                    android:text="ART &amp; DESIGN"
+                    android:textSize="@dimen/text_regular" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_detail_img"
+                android:layout_margin="@dimen/margin_large"
+                android:text="Designing for everyone, everywhere with Yosef P."
+                android:textSize="@dimen/text_heading_1x"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rl_up_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_detail_title"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginEnd="@dimen/margin_large">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ac_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_access_time_24" />
+
+                <TextView
+                    android:id="@+id/tv_detail_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_toEndOf="@id/ac_time"
+                    android:paddingTop="@dimen/margin_small"
+                    android:text="12 m"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_3"
+                    android:layout_toEndOf="@id/tv_detail_time"
+                    android:src="@drawable/ic_baseline_whatshot_24" />
+
+                <TextView
+                    android:id="@+id/tv_detail_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_toEndOf="@id/iv_hot"
+                    android:paddingTop="@dimen/margin_small"
+                    android:text="88"
+                    android:textStyle="bold"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_sms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_sms_24"
+                    android:layout_toEndOf="@id/tv_detail_hot"
+                    android:layout_marginStart="@dimen/margin_medium_3"
+                    android:paddingTop="@dimen/margin_small"/>
+                <TextView
+                    android:id="@+id/tv_sms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="10"
+                    android:layout_toEndOf="@id/iv_sms"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:paddingTop="@dimen/margin_small"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/tv_detail_time"
+                    android:layout_alignParentRight="true"
+                    android:text=".."
+                    android:textSize="@dimen/text_big" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGray"
+                    android:layout_below="@id/tv_sms"
+                    android:layout_marginTop="@dimen/margin_large"
+                    />
+            </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_detail_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_text"
+                    android:layout_below="@id/rl_up_next"
+                    android:layout_margin="@dimen/margin_large"
+                    android:lineSpacingExtra="@dimen/margin_medium"
+                    android:textStyle="bold"/>
+            <RelativeLayout
+                android:id="@+id/rl_mini_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_detail_description"
+                android:layout_margin="@dimen/margin_medium"
+                >
+                <include android:id="@+id/vp_mini_play"
+                    layout="@layout/view_pod_mini_play_back"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>
