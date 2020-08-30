@@ -30,7 +30,9 @@ class DetailActivity : AppCompatActivity(),DetailView {
     }
 
     private fun setUpListener(){
-        mDetailPresenter.onClickBack()
+        iv_back.setOnClickListener {
+            mDetailPresenter.onClickBack()
+        }
     }
 
     private fun setUpPresenter(){

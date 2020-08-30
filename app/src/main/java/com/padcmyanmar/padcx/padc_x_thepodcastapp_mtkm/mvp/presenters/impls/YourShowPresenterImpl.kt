@@ -11,6 +11,6 @@ class YourShowPresenterImpl : YourShowPresenter, AbstractBasePresenter<YourShowV
     }
 
     override fun onTapItem(id: Int) {
-
+        mView?.navigateDetail(id)
     }
 }
