@@ -7,7 +7,10 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.delegates.ShowDelegate
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewholders.UpNextViewHolder
 
-class UpNextAdapter(val mDelegate : ShowDelegate) : RecyclerView.Adapter<UpNextViewHolder>() {
+class UpNextAdapter(delegate : ShowDelegate) : RecyclerView.Adapter<UpNextViewHolder>() {
+
+    val mDelegate = delegate
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpNextViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_up_next,parent,false)
         return UpNextViewHolder(view,mDelegate)

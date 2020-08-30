@@ -1,4 +1,4 @@
-package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.fragments
+package com.padcmyanmar.padcx.shared.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

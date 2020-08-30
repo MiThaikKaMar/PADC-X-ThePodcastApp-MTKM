@@ -1,4 +1,4 @@
-package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.activities
+package com.padcmyanmar.padcx.shared.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

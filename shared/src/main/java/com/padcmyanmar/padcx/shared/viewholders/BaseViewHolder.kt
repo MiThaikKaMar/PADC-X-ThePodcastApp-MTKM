@@ -1,4 +1,4 @@
-package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewholders
+package com.padcmyanmar.padcx.shared.viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

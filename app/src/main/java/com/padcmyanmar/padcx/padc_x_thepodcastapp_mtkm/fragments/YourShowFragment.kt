@@ -2,24 +2,29 @@ package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.activities.DetailActivity
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.adapters.YourShowAdapter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.delegates.ShowDelegate
-import kotlinx.android.synthetic.main.activity_main.*
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.YourShowPresenter
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.YourShowPresenterImpl
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.YourShowView
+import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_your_show.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class YourShowFragment : BaseFragment(),ShowDelegate {
+class YourShowFragment : BaseFragment(), YourShowView {
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var mYourShowPresenter : YourShowPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,16 +54,23 @@ class YourShowFragment : BaseFragment(),ShowDelegate {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rv_your_shows.adapter=YourShowAdapter(this)
-        val linearLayout = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
-        rv_your_shows.layoutManager=linearLayout
+        setUpPresenter()
+        setUpRecyclerView()
 
-        iv_arrow.setOnClickListener {
-            vp_welcome.visibility=View.VISIBLE
-        }
     }
 
-    override fun onTapItem(id: Int) {
+    private fun setUpPresenter(){
+        mYourShowPresenter=ViewModelProviders.of(this).get(YourShowPresenterImpl::class.java)
+        mYourShowPresenter.initPresenter(this)
+    }
+
+    private fun setUpRecyclerView(){
+        rv_your_shows.adapter=YourShowAdapter(mYourShowPresenter)
+        val linearLayout = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
+        rv_your_shows.layoutManager=linearLayout
+    }
+
+    override fun navigateDetail() {
         startActivity(Intent(this.context,DetailActivity::class.java))
     }
 }

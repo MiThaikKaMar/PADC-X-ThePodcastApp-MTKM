@@ -8,20 +8,22 @@
     <RelativeLayout
         android:id="@+id/rl_your_shows"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?actionBarSize"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_large"
-        android:layout_marginTop="@dimen/margin_xxlarge"
-        android:layout_marginBottom="@dimen/margin_large">
+        android:layout_marginBottom="@dimen/margin_medium"
+>
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_arrow"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/ic_baseline_navigate_before_24"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Shows"
+            android:layout_centerVertical="true"
             android:layout_toEndOf="@id/tv_up_next"
             android:textSize="@dimen/text_regular_3x"/>
         <TextView
@@ -29,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Your"
+            android:layout_centerVertical="true"
             android:layout_toEndOf="@id/iv_arrow"
             android:textSize="@dimen/text_regular_3x"
             android:textStyle="bold"/>

@@ -1,0 +1,92 @@
+ext {
+    gsonVersion = "2.8.6"
+    glideVersion = "4.11.0"
+    appCompatVersion = "1.1.0"
+    coreVersion = "1.3.1"
+    constraintVersion = "1.1.3"
+    materialVersion = "1.1.0"
+    legacyVersion = "1.0.0"
+    testjunitVersion = "4.12"
+    androidtestjunitVersion ="1.1.1"
+    espressoVersion = "3.2.0"
+    okhttpVersion="4.1.0"
+    retrofitadapterVersion ="2.6.1"
+    retrofit2Version ="2.6.1"
+    retrofitconverterVersion ="2.5.0"
+    rxbindingcoreVersion ="3.1.0"
+    rxbindingappcompatVersion ="3.1.0"
+    rxbindingdrawerVersion ="3.1.0"
+    rxbindingleanbackVersion ="3.1.0"
+    rxbindingrecyclerviewVersion ="3.1.0"
+    rxbindingslidingVersion ="3.1.0"
+    rxbindingswiperefreshVersion ="3.1.0"
+    rxbindingviewpagerVersion ="3.1.0"
+    rxbindingviewpager2Version ="3.1.0"
+    room_version = "2.2.3"
+    lifecycle_version = "2.2.0"
+    glidecompilerVersion ="4.11.0"
+    youtubeplayerVersion ="10.0.5"
+    junitVersion ="4.12"
+    junitktxVersion ="1.1.1"
+    corektxVersion="1.2.0"
+    robolectricVersion ="4.3.1"
+    mockkVersion ="1.10.0"
+    mockitoVersion ="3.1.0"
+    junitjunitVersion ="4.12"
+    espressocoreVersion ="3.2.0"
+    rulesVersion ="1.2.0"
+    runnerVersion ="1.2.0"
+    androidtestcorektxVersion ="1.2.0"
+    androidtestjunitktxVersion="1.1.1"
+    espressocontribVersion="3.2.0"
+    mockitoandroidVersion ="3.1.0"
+
+    libraries = [
+            gson : "com.google.code.gson:gson:$gsonVersion",
+            glide : "com.github.bumptech.glide:glide:$glideVersion",
+            appCompat : "androidx.appcompat:appcompat:$appCompatVersion",
+            core : "androidx.core:core-ktx:$coreVersion",
+            constraint : "androidx.constraintlayout:constraintlayout:$constraintVersion",
+            material : "com.google.android.material:material:$materialVersion",
+            legacy : "androidx.legacy:legacy-support-v4:$legacyVersion",
+            testjunit : "junit:junit:$testjunitVersion",
+            androidtestjunit : "androidx.test.ext:junit:$androidtestjunitVersion",
+            espresso : "androidx.test.espresso:espresso-core:$espressoVersion",
+            okhttp : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            retrofitadapter : "com.squareup.retrofit2:adapter-rxjava2:$retrofitadapterVersion",
+            retrofit2 : "com.squareup.retrofit2:retrofit:$retrofit2Version",
+            retrofitconverter : "com.squareup.retrofit2:converter-gson:$retrofitconverterVersion",
+            rxbindingcore : "com.jakewharton.rxbinding3:rxbinding-core:$rxbindingcoreVersion",
+            rxbindingappcompat : "com.jakewharton.rxbinding3:rxbinding-appcompat:$rxbindingappcompatVersion",
+            rxbindingdrawer : "com.jakewharton.rxbinding3:rxbinding-drawerlayout:$rxbindingdrawerVersion",
+            rxbindingleanback : "com.jakewharton.rxbinding3:rxbinding-leanback:$rxbindingleanbackVersion",
+            rxbindingrecyclerview : "com.jakewharton.rxbinding3:rxbinding-recyclerview:$rxbindingrecyclerviewVersion",
+            rxbindingsliding : "com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:$rxbindingslidingVersion",
+            rxbindingswiperefresh : "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:$rxbindingswiperefreshVersion",
+            rxbindingviewpager :"com.jakewharton.rxbinding3:rxbinding-viewpager:$rxbindingviewpagerVersion",
+            rxbindingviewpager2 : "com.jakewharton.rxbinding3:rxbinding-viewpager2:$rxbindingviewpager2Version",
+            livedata : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+            extensions : "android.arch.lifecycle:extensions:$lifecycle_version",
+            compiler : "android.arch.lifecycle:compiler:$lifecycle_version",
+            lifecyclecompiler : "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
+            roomruntime : "androidx.room:room-runtime:$room_version",
+            roomcompiler : "androidx.room:room-compiler:$room_version",
+            glidecompiler : "com.github.bumptech.glide:compiler:$glidecompilerVersion",
+            youtubeplayer : "com.pierfrancescosoffritti.androidyoutubeplayer:core:$youtubeplayerVersion",
+            junit : "junit:junit:$junitVersion",
+            junitktx : "androidx.test.ext:junit-ktx:$junitktxVersion",
+            corektx : "androidx.test:core-ktx:$corektxVersion",
+            robolectric : "org.robolectric:robolectric:$robolectricVersion",
+            mockk : "io.mockk:mockk:$mockkVersion",
+            mockito : "org.mockito:mockito-core:$mockitoVersion",
+            junitjunit : "junit:junit:$junitjunitVersion",
+            espressocore : "androidx.test.espresso:espresso-core:$espressocoreVersion",
+            rules : "androidx.test:rules:$rulesVersion",
+            runner : "androidx.test:runner:$runnerVersion",
+            androidtestcorektx : "androidx.test:core-ktx:$androidtestcorektxVersion",
+            androidtestjunitktx : "androidx.test.ext:junit-ktx:$androidtestjunitktxVersion",
+            espressocontrib : "com.android.support.test.espresso:espresso-contrib:$espressocontribVersion",
+            androidmockito : "org.mockito:mockito-android:$mockitoandroidVersion"
+
+    ]
+}

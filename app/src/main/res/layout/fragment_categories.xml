@@ -37,8 +37,8 @@
                 android:id="@+id/rl_categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_large"
-                android:layout_below="@id/tv_cate"/>
+                android:layout_below="@id/tv_cate"
+                android:clipToPadding="true"/>
     </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

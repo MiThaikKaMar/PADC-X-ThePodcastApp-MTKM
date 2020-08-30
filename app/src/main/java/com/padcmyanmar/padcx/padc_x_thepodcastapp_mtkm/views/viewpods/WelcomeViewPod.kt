@@ -16,10 +16,5 @@ class WelcomeViewPod @JvmOverloads constructor(
     override fun onFinishInflate() {
         super.onFinishInflate()
 
-        btn_reload.setOnClickListener {
-            visibility= View.INVISIBLE
-        }
-        btn_new.setOnClickListener {
-        }
     }
 }
