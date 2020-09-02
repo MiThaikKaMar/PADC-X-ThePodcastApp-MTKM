@@ -1,6 +1,6 @@
 package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.fragments
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +9,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.activities.DetailActivity
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.adapters.CategoryAdapter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.adapters.UpNextAdapter
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.PlaylistVO
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.RandomVO
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.PodcastPresenter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.PodcastPresenterImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.PodcastView
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.PlayBackViewPod
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_podcast.*
 
@@ -23,7 +27,9 @@ class PodcastFragment : BaseFragment(),PodcastView {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var mPlayBackViewPod : PlayBackViewPod
     private lateinit var mPodcastPresenter : PodcastPresenter
+    private lateinit var mUpNextAdapter : UpNextAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +44,8 @@ class PodcastFragment : BaseFragment(),PodcastView {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_podcast, container, false)
+
+
     }
 
     companion object {
@@ -55,25 +63,39 @@ class PodcastFragment : BaseFragment(),PodcastView {
         super.onViewCreated(view, savedInstanceState)
 
         setUpPresenter()
-
+        mPodcastPresenter.onUiReady(this,"")
         setUpRecyclerView()
-
+        setUpViewPod()
     }
-
-    private fun setUpRecyclerView(){
-        val layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
-        rv_up_next.adapter=UpNextAdapter(mPodcastPresenter)
-        rv_up_next.layoutManager=layoutManager
-    }
-
-
     private fun setUpPresenter(){
         mPodcastPresenter=ViewModelProviders.of(this).get(PodcastPresenterImpl::class.java)
         mPodcastPresenter.initPresenter(this)
     }
 
-    override fun navigateDetail(id:Int) {
+    private fun setUpRecyclerView(){
+        mUpNextAdapter= UpNextAdapter(mPodcastPresenter)
+        val layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
+        rv_up_next.adapter=mUpNextAdapter
+        rv_up_next.layoutManager=layoutManager
+    }
+
+    override fun navigateDetail(id:String) {
         startActivity(DetailActivity.newIntent(this.requireContext(),id))
     }
 
+    override fun showRandomEpisode(randomEpisode: RandomVO) {
+        randomEpisode?.let {
+            mPlayBackViewPod.setData(randomEpisode)
+            tv_description.text=randomEpisode.description
+        }
+
+    }
+
+    override fun showPlayList(list: List<PlaylistVO>) {
+        mUpNextAdapter.setData(list.toMutableList())
+    }
+
+    private fun setUpViewPod(){
+        mPlayBackViewPod= vp_play_back as PlayBackViewPod
+    }
 }

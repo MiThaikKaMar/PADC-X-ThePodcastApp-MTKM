@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
@@ -14,11 +17,13 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String','API_VALUE',"${credentialData}"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -66,10 +71,14 @@ dependencies {
 
 // lifecycle components
     implementation rootProject.ext.libraries.extensions
+    kapt rootProject.ext.libraries.compiler
 
+// Annotation processor
+    kapt rootProject.ext.libraries.lifecyclecompiler
 
 // Room
     implementation rootProject.ext.libraries.roomruntime
+    kapt rootProject.ext.libraries.roomcompiler
 
 
     //Glide
@@ -95,5 +104,11 @@ dependencies {
     androidTestImplementation rootProject.ext.libraries.androidtestjunitktx
     androidTestImplementation rootProject.ext.libraries.espressocontrib
     androidTestImplementation rootProject.ext.libraries.androidmockito
+
+    //MediaPlayter
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:28.0.0-alpha3'
+
 
 }

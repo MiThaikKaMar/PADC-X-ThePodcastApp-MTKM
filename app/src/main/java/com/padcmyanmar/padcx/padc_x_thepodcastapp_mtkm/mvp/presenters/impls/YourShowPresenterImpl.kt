@@ -6,11 +6,11 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.YourShowPr
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.YourShowView
 
 class YourShowPresenterImpl : YourShowPresenter, AbstractBasePresenter<YourShowView>() {
-    override fun onUiReady(lifecycleOwner: LifecycleOwner) {
+    override fun onUiReady(lifecycleOwner: LifecycleOwner,id: String) {
 
     }
 
-    override fun onTapItem(id: Int) {
+    override fun onTapItem(id: String) {
         mView?.navigateDetail(id)
     }
 }

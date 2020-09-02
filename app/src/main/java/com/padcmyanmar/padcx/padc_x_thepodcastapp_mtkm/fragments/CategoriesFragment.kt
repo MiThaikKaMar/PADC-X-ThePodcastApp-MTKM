@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.adapters.CategoryAdapter
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.GeneresVO
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.CategoriesPresenter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.CategoriesPresenterImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.CategoriesView
@@ -21,6 +22,7 @@ class CategoriesFragment : BaseFragment(),CategoriesView {
     private var param2: String? = null
 
 private lateinit var mCategoriesPresenter : CategoriesPresenter
+    private val mCategoriesAdapter = CategoryAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +54,7 @@ private lateinit var mCategoriesPresenter : CategoriesPresenter
 
         setUpPresenter()
         setUpRecyclerView()
+        mCategoriesPresenter.onUiReady(this,"")
     }
 
     private fun setUpPresenter(){
@@ -60,8 +63,17 @@ private lateinit var mCategoriesPresenter : CategoriesPresenter
     }
 
     private fun setUpRecyclerView(){
-        rl_categories.adapter=CategoryAdapter()
+        rl_categories.adapter=mCategoriesAdapter
         val layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
         rl_categories.layoutManager=layoutManager
+    }
+
+
+    override fun showGenresList(genresList: List<GeneresVO>) {
+        mCategoriesAdapter.setData(genresList.toMutableList())
+    }
+
+    override fun showMainCategory(genresList: List<GeneresVO>) {
+        tv_main_cate.text=genresList[0].name
     }
 }

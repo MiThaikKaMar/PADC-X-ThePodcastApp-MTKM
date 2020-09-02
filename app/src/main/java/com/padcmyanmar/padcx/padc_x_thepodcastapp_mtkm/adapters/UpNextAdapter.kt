@@ -4,10 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.PlaylistVO
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.delegates.ShowDelegate
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewholders.UpNextViewHolder
+import com.padcmyanmar.padcx.shared.adapters.BaseAdapter
+import com.padcmyanmar.padcx.shared.viewholders.BaseViewHolder
 
-class UpNextAdapter(delegate : ShowDelegate) : RecyclerView.Adapter<UpNextViewHolder>() {
+class UpNextAdapter(delegate : ShowDelegate) : BaseAdapter<BaseViewHolder<PlaylistVO>,PlaylistVO>(){
 
     val mDelegate = delegate
 
@@ -16,11 +19,4 @@ class UpNextAdapter(delegate : ShowDelegate) : RecyclerView.Adapter<UpNextViewHo
         return UpNextViewHolder(view,mDelegate)
     }
 
-    override fun getItemCount(): Int {
-        return 10
-    }
-
-    override fun onBindViewHolder(holder: UpNextViewHolder, position: Int) {
-
-    }
 }

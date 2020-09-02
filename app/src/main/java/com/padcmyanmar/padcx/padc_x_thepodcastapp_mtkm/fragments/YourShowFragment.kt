@@ -70,7 +70,7 @@ class YourShowFragment : BaseFragment(), YourShowView {
         rv_your_shows.layoutManager=linearLayout
     }
 
-    override fun navigateDetail(id :Int) {
+    override fun navigateDetail(id :String) {
         startActivity(DetailActivity.newIntent(this.requireContext(),id))
     }
 }

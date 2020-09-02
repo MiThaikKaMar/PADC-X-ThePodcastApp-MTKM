@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Women n Tech Podcasts..."
-        android:minLines="1"
+        android:maxLines="1"
         android:ellipsize="end"
         android:textColor="@color/colorFullWhite"
         android:layout_toEndOf="@id/iv_play_back"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="The #womenintech show is ..."
-        android:minLines="1"
+        android:maxLines="1"
         android:ellipsize="end"
         android:textColor="@color/colorGray"
         android:layout_toEndOf="@id/iv_play_back"
@@ -48,6 +48,7 @@
         android:layout_marginTop="@dimen/margin_medium"
         android:progressBackgroundTint="@color/colorFullWhite"/>
     <TextView
+        android:id="@+id/tv_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1h left"

@@ -6,7 +6,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.MainPresen
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.MainView
 
 class MainPresenterImpl: MainPresenter, AbstractBasePresenter<MainView>(){
-    override fun onUiReady(lifecycleOwner: LifecycleOwner) {
+    override fun onUiReady(lifecycleOwner: LifecycleOwner,id:String) {
 
     }
 }

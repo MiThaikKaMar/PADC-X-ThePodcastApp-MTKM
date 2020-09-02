@@ -7,7 +7,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.delegates.ShowDelegate
 class YourShowViewHolder(itemView: View,delegate: ShowDelegate) : RecyclerView.ViewHolder(itemView) {
     init {
         itemView.setOnClickListener {
-            delegate.onTapItem(0)
+            delegate.onTapItem("")
         }
     }
 }
