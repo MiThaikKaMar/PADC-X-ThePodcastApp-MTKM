@@ -16,6 +16,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.RandomVO
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.PodcastPresenter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.PodcastPresenterImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.PodcastView
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.EmptyViewPod
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.PlayBackViewPod
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_podcast.*
@@ -30,6 +31,7 @@ class PodcastFragment : BaseFragment(),PodcastView {
     private lateinit var mPlayBackViewPod : PlayBackViewPod
     private lateinit var mPodcastPresenter : PodcastPresenter
     private lateinit var mUpNextAdapter : UpNextAdapter
+    private lateinit var mEmptyVP : EmptyViewPod
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,10 +75,13 @@ class PodcastFragment : BaseFragment(),PodcastView {
     }
 
     private fun setUpRecyclerView(){
+
+        mEmptyVP = vp_empty as EmptyViewPod
         mUpNextAdapter= UpNextAdapter(mPodcastPresenter)
         val layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
         rv_up_next.adapter=mUpNextAdapter
         rv_up_next.layoutManager=layoutManager
+        rv_up_next.setEmpytView(mEmptyVP)
     }
 
     override fun navigateDetail(id:String) {
@@ -84,11 +89,8 @@ class PodcastFragment : BaseFragment(),PodcastView {
     }
 
     override fun showRandomEpisode(randomEpisode: RandomVO) {
-        randomEpisode?.let {
             mPlayBackViewPod.setData(randomEpisode)
             tv_description.text=randomEpisode.description
-        }
-
     }
 
     override fun showPlayList(list: List<PlaylistVO>) {

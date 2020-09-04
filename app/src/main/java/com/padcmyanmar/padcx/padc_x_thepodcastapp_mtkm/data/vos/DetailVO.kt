@@ -8,22 +8,22 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "detail_entity")
 data class DetailVO(
-    @SerializedName("audio")var audio: String,
-    @SerializedName("audio_length_sec")var audio_length_sec: Int,
-    @SerializedName("description")var description: String,
-    @SerializedName("explicit_content")var explicit_content: Boolean,
+    @SerializedName("audio")var audio: String="",
+    @SerializedName("audio_length_sec")var audio_length_sec: Int=0,
+    @SerializedName("description")var description: String="",
+    @SerializedName("explicit_content")var explicit_content: Boolean=false,
     @PrimaryKey
-    @SerializedName("id")var id: String,
-    @SerializedName("image")var image: String,
-    @SerializedName("link")var link: String,
-    @SerializedName("listennotes_edit_url")var listennotes_edit_url: String,
-    @SerializedName("listennotes_url")var listennotes_url: String,
-    @SerializedName("maybe_audio_invalid")var maybe_audio_invalid: Boolean,
+    @SerializedName("id")var id: String="",
+    @SerializedName("image")var image: String="",
+    @SerializedName("link")var link: String="",
+    @SerializedName("listennotes_edit_url")var listennotes_edit_url: String="",
+    @SerializedName("listennotes_url")var listennotes_url: String="",
+    @SerializedName("maybe_audio_invalid")var maybe_audio_invalid: Boolean=false,
     @Embedded
-    @SerializedName("podcast")var podcast: PodcastVO,
-    @SerializedName("pub_date_ms")var pub_date_ms: Long,
-    @SerializedName("thumbnail")var thumbnail: String,
-    @SerializedName("title")var title: String
+    @SerializedName("podcast")var podcast: PodcastVO? = null,
+    @SerializedName("pub_date_ms")var pub_date_ms: Long = 0L,
+    @SerializedName("thumbnail")var thumbnail: String="",
+    @SerializedName("title")var title: String=""
 )
 
 data class Podcast(

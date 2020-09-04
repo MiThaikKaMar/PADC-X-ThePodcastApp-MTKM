@@ -1,17 +1,11 @@
 package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods
 
 import android.content.Context
-import android.media.AudioAttributes
-import android.media.MediaPlayer
 import android.util.AttributeSet
-import android.view.View
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.RandomVO
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.fragments.PodcastFragment
 import kotlinx.android.synthetic.main.view_pod_play_back.view.*
-import java.util.concurrent.TimeUnit
 
 class PlayBackViewPod @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

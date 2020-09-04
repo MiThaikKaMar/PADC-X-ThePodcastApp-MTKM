@@ -12,6 +12,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.GeneresVO
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.CategoriesPresenter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.CategoriesPresenterImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.CategoriesView
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.EmptyViewPod
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_categories.*
 
@@ -23,6 +24,7 @@ class CategoriesFragment : BaseFragment(),CategoriesView {
 
 private lateinit var mCategoriesPresenter : CategoriesPresenter
     private val mCategoriesAdapter = CategoryAdapter()
+    private lateinit var mEmptyViewPod: EmptyViewPod
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,9 +65,11 @@ private lateinit var mCategoriesPresenter : CategoriesPresenter
     }
 
     private fun setUpRecyclerView(){
+        mEmptyViewPod = vp_empty_cate as EmptyViewPod
         rl_categories.adapter=mCategoriesAdapter
         val layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
         rl_categories.layoutManager=layoutManager
+        rl_categories.setEmpytView(mEmptyViewPod)
     }
 
 
@@ -74,6 +78,10 @@ private lateinit var mCategoriesPresenter : CategoriesPresenter
     }
 
     override fun showMainCategory(genresList: List<GeneresVO>) {
-        tv_main_cate.text=genresList[0].name
+        if (genresList.size != 0){
+            tv_main_cate.text=genresList[1].name
+        }else{
+            tv_main_cate.text=""
+        }
     }
 }

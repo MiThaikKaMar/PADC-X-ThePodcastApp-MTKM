@@ -1,81 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.PlayerActivity">
+xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+android:layout_height="match_parent">
+<!--tools:context=".activities.PlayerActivity">-->
 
-    <TextView android:text="Music Palyer" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textview"
-        android:textSize="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+<!--<TextView android:text="Music Palyer" android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:id="@+id/textview"-->
+<!--    android:textSize="35dp"-->
+<!--    android:layout_alignParentTop="true"-->
+<!--    android:layout_centerHorizontal="true" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tutorials point"
-        android:id="@+id/textView"
-        android:layout_below="@+id/textview"
-        android:layout_centerHorizontal="true"
-        android:textColor="#ff7aff24"
-        android:textSize="35dp" />
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="Tutorials point"-->
+<!--    android:id="@+id/textView"-->
+<!--    android:layout_above="@id/button2"-->
+<!--    android:layout_centerHorizontal="true"-->
+<!--    android:textColor="#ff7aff24"-->
+<!--    android:textSize="35dp" />-->
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/sample"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/imageView"
-        android:background="@drawable/ic_baseline_pause_circle_filled_24"
-        android:layout_alignStart="@+id/imageView" />
+<!--<ImageView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:id="@+id/imageView"-->
+<!--    android:layout_below="@+id/textView"-->
+<!--    android:layout_centerHorizontal="true"-->
+<!--    android:src="@drawable/sample"/>-->
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rewind"
-        android:id="@+id/button4"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/margin_large"
-        android:layout_toEndOf="@+id/button2" />
+<!--<Button-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:id="@+id/button2"-->
+<!--    android:layout_alignParentBottom="true"-->
+<!--    android:layout_alignLeft="@+id/imageView"-->
+<!--    android:background="@drawable/ic_baseline_pause_circle_filled_24"-->
+<!--    android:layout_alignStart="@+id/imageView" />-->
 
-    <SeekBar
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
-     android:layout_centerHorizontal="true"
-        android:layout_above="@id/button2"
-        android:layout_margin="@dimen/margin_large"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textView2"
-        android:layout_above="@+id/seekBar"
-        android:layout_margin="@dimen/margin_large"
-       />
+<!--<Button-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="@string/rewind"-->
+<!--    android:id="@+id/button4"-->
+<!--    android:layout_alignParentBottom="true"-->
+<!--    android:layout_marginStart="@dimen/margin_large"-->
+<!--    android:layout_toEndOf="@+id/button2" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textView3"
-        android:layout_above="@+id/seekBar"
-        android:layout_margin="@dimen/margin_large"
-        android:layout_toEndOf="@id/textView2"/>
+<!--<SeekBar-->
+<!--    android:layout_width="300dp"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:id="@+id/seekBar"-->
+<!--    android:layout_centerHorizontal="true"-->
+<!--    android:layout_above="@id/button2"-->
+<!--    android:layout_margin="@dimen/margin_large"/>-->
+
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:textAppearance="?android:attr/textAppearanceSmall"-->
+<!--    android:text="Small Text"-->
+<!--    android:id="@+id/textView2"-->
+<!--    android:layout_above="@+id/seekBar"-->
+<!--    android:layout_margin="@dimen/margin_large"-->
+<!--    />-->
+
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:textAppearance="?android:attr/textAppearanceSmall"-->
+<!--    android:text="Small Text"-->
+<!--    android:id="@+id/textView3"-->
+<!--    android:layout_above="@+id/seekBar"-->
+<!--    android:layout_margin="@dimen/margin_large"-->
+<!--    android:layout_toEndOf="@id/textView2"/>-->
 
 
 </RelativeLayout>

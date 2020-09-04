@@ -8,12 +8,12 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "playlist_entity")
 data class PlaylistVO(
     @PrimaryKey
-    @SerializedName("added_at_ms")var added_at_ms: Long,
+    @SerializedName("added_at_ms")var added_at_ms: Long=0L,
     @Embedded
-    @SerializedName("data")var data: DataVO,
-    @SerializedName("id")var id: Int,
-    @SerializedName("notes")var notes: String,
-    @SerializedName("type")var type: String
+    @SerializedName("data")var data: DataVO?=null,
+    @SerializedName("id")var id: Int=0,
+    @SerializedName("notes")var notes: String="",
+    @SerializedName("type")var type: String=""
 )
 
 data class DataVO(

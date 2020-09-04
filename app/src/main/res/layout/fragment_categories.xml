@@ -56,4 +56,8 @@
                 android:clipToPadding="true"/>
     </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+    <include android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        layout="@layout/view_pod_empty"
+        android:id="@+id/vp_empty_cate"/>
 </RelativeLayout>
