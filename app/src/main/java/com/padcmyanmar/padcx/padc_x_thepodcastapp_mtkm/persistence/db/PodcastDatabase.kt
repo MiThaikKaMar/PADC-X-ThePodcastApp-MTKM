@@ -4,16 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.DetailVO
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.GeneresVO
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.PlaylistVO
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.RandomVO
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.*
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.persistence.dao.PodcastDao
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.utils.DATABASE_NAME
 
 
-@Database(entities =[GeneresVO::class,RandomVO::class,PlaylistVO::class,DetailVO::class] ,
-version =12 ,
+@Database(entities =[GeneresVO::class,RandomVO::class,PlaylistVO::class,DetailVO::class,DownloadVO::class] ,
+version =13 ,
 exportSchema = false)
 abstract class PodcastDatabase : RoomDatabase() {
     companion object {

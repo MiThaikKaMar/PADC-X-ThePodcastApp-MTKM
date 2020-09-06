@@ -9,7 +9,7 @@ const val PARAM_API_KEY = "X-ListenAPI-Key"
 const val PARAM_API_VALUE = BuildConfig.API_VALUE
 
 //BaseUrl
-const val BASE_URL = "https://listen-api.listennotes.com/api/v2/"
+const val BASE_URL = "https://bdc6de61-2fa1-48c3-8e5e-ca59d3fc651b.mock.pstmn.io/"
 
 //EndPoint
 const val GET_GENRES_LIST ="genres"
@@ -19,6 +19,7 @@ const val GET_DETAIL="episodes/{DETAIL_ID}"
 
 //PathVariables
 const val PODCAST_ID = "SgTozE1ZAe3"
+const val DETAIL_VALUE ="e1495b84d26d4c2d9ea1fc6db47a78f8"
 
 
 //QueryParam
@@ -33,4 +34,7 @@ const val VALUE_LAST_TIMESTAMP=0
 
 const val PARAM_SORT="sort"
 const val VALUE_SORT="recent_added_first"
+
+const val HOMEPAGE = "home"
+const val DOWNLOADPAGE = "downlod"
 

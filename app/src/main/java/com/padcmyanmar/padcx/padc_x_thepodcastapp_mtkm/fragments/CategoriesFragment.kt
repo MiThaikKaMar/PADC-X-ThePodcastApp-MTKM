@@ -78,10 +78,8 @@ private lateinit var mCategoriesPresenter : CategoriesPresenter
     }
 
     override fun showMainCategory(genresList: List<GeneresVO>) {
-        if (genresList.size != 0){
-            tv_main_cate.text=genresList[1].name
-        }else{
-            tv_main_cate.text=""
-        }
+
+//            tv_main_cate.text=genresList[0].name
+
     }
 }

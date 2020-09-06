@@ -1,6 +1,7 @@
 package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls
 
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.models.Impls.PodcastModelImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.AbstractBasePresenter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.DetailPresenter
@@ -15,9 +16,14 @@ class DetailPresenterImpl : DetailPresenter, AbstractBasePresenter<DetailView>()
     }
 
     private fun requestDetail(lifecycleOwner: LifecycleOwner, id: String) {
-        mPodcastModel.getDeatil(id,onSuccess = {
-            mView?.showDetail(it)
-        })
+
+
+        mPodcastModel.getDeatil(id)
+            .observe(lifecycleOwner, Observer {
+                it?.let {
+                    mView?.showDetail(it)
+                }
+            })
     }
 
     override fun onClickBack() {

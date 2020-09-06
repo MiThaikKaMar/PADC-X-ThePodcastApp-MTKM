@@ -3,9 +3,10 @@
     <string name="sample_text2">It is one of the five weekly journals published by Eleven Media Group</string>
     <string name="sample_text">Weekly Eleven is a weekly newspaper published in Myanmar. It is one of the five weekly journals published by Eleven Media Group which was founded in June 2000.Weekly Eleven is a weekly newspaper published in Myanmar. It is one of the five weekly journals published by Eleven Media Group which was founded in June 2000. It is focused on general local news and some sports and international news.</string>
 
-//Music Player
+    //Music Player
     <string name="back"><![CDATA[<]]></string>
     <string name="rewind"><![CDATA[<<]]></string>
     <string name="forward"><![CDATA[>>]]></string>
     <string name="pause">||</string>
+    <string name="my_url_string">https://www.listennotes.com/e/p/6a15b804507a4387bc51450bb173146f/</string>
 </resources>

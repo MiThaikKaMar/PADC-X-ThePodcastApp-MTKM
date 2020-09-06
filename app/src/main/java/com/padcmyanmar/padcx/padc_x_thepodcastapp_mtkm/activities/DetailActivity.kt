@@ -6,6 +6,7 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
@@ -27,17 +28,22 @@ class DetailActivity : AppCompatActivity(),DetailView {
     private lateinit var mMiniViewPod : MiniPlayBackViewPod
 
     companion object{
-        const val DETAIL_ID ="detail_id"
-        fun newIntent(context : Context,id :String): Intent {
-            val intent=Intent(context,DetailActivity::class.java)
-            intent.putExtra(DETAIL_ID,id)
+        const val EPISODE_PARAM = "dataId"
+        const val FROMPAGE ="fromPage"
+        const val DOWNLOAD_AUDI_FILE_PATH ="audio_file_path"
+
+        fun newIntent(context: Context, dataId: String, fromPage : String, assetFilePath : String): Intent {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(EPISODE_PARAM, dataId)
+            intent.putExtra(FROMPAGE, fromPage)
+            intent.putExtra(DOWNLOAD_AUDI_FILE_PATH, assetFilePath)
             return intent
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        var detailId = intent.getStringExtra(DETAIL_ID)
+        var detailId = intent.getStringExtra(EPISODE_PARAM)
 
         setUpPresenter()
         mDetailPresenter.onUiReady(this, detailId.toString())
@@ -47,9 +53,7 @@ class DetailActivity : AppCompatActivity(),DetailView {
     }
 
     private fun setUpListener(){
-        iv_back.setOnClickListener {
-            mDetailPresenter.onClickBack()
-        }
+
     }
 
     private fun setUpPresenter(){
@@ -66,16 +70,21 @@ class DetailActivity : AppCompatActivity(),DetailView {
     }
 
     override fun showDetail(detail: DetailVO) {
-        detail?.let {
-            Glide.with(window.decorView)
-                .load(it.image)
+
+            Glide.with(this)
+                .load(detail.image)
                 .into(iv_detail)
 
-            tv_detail_title.text=it.title
-            tv_detail_time.text=it.audio_length_sec.toString()+" s"
-            tv_detail_description.text=it.description
+            tv_detail_title.text=detail.title
+            tv_detail_time.text=detail.audio_length_sec.toString()+"s"
+            tv_detail_description.text=Html.fromHtml(detail.description)
 
-            mMiniViewPod.setMiniData(it)
-        }
+            mMiniViewPod.setMiniData(detail)
+
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }

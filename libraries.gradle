@@ -41,6 +41,10 @@ ext {
     espressocontribVersion="3.2.0"
     mockitoandroidVersion ="3.1.0"
 
+    exoPlayerVersion = "2.10.3"
+    facebookShimmerVersion="0.5.0"
+    multidexVersion = "1.0.3"
+
     libraries = [
             gson : "com.google.code.gson:gson:$gsonVersion",
             glide : "com.github.bumptech.glide:glide:$glideVersion",
@@ -86,7 +90,11 @@ ext {
             androidtestcorektx : "androidx.test:core-ktx:$androidtestcorektxVersion",
             androidtestjunitktx : "androidx.test.ext:junit-ktx:$androidtestjunitktxVersion",
             espressocontrib : "com.android.support.test.espresso:espresso-contrib:$espressocontribVersion",
-            androidmockito : "org.mockito:mockito-android:$mockitoandroidVersion"
+            androidmockito : "org.mockito:mockito-android:$mockitoandroidVersion",
+
+            exoPlayer :  "com.google.android.exoplayer:exoplayer:$exoPlayerVersion",
+            facebookShimmer : "com.facebook.shimmer:shimmer:$facebookShimmerVersion",
+            multidex : "com.android.support:multidex:$multidexVersion"
 
     ]
 }

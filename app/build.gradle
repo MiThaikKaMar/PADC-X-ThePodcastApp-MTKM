@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
@@ -23,7 +24,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -50,6 +51,7 @@ dependencies {
 
     //Retrofit Adapter library
     implementation rootProject.ext.libraries.retrofitadapter
+
 
     //Retrofit Library
     implementation rootProject.ext.libraries.retrofit2
@@ -107,8 +109,11 @@ dependencies {
 
     //MediaPlayter
 
+
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0-alpha3'
+
+
 
 
 }

@@ -2,6 +2,7 @@ package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.activities.DetailActivity
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.adapters.YourShowAdapter
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.DownloadVO
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.delegates.ShowDelegate
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.YourShowPresenter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.YourShowPresenterImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.YourShowView
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.utils.DOWNLOADPAGE
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_your_show.*
 
@@ -25,6 +28,8 @@ class YourShowFragment : BaseFragment(), YourShowView {
     private var param2: String? = null
 
     private lateinit var mYourShowPresenter : YourShowPresenter
+    private lateinit var mYourShowAdapter: YourShowAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,12 +70,20 @@ class YourShowFragment : BaseFragment(), YourShowView {
     }
 
     private fun setUpRecyclerView(){
-        rv_your_shows.adapter=YourShowAdapter(mYourShowPresenter)
+        mYourShowAdapter= YourShowAdapter(mYourShowPresenter)
+        rv_your_shows.adapter=mYourShowAdapter
         val linearLayout = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
         rv_your_shows.layoutManager=linearLayout
     }
 
-    override fun navigateDetail(id :String) {
-        startActivity(DetailActivity.newIntent(this.requireContext(),id))
+    override fun navigateDetail(downloadVO: DownloadVO) {
+        startActivity(DetailActivity.newIntent(this.requireContext(),downloadVO.download_id,
+            DOWNLOADPAGE,downloadVO.download_audio_path))
+    }
+
+    override fun displayDownloadPodcastList(list: List<DownloadVO>) {
+
+        Log.e("Count",list.count().toString())
+        mYourShowAdapter.setData(list.toMutableList())
     }
 }

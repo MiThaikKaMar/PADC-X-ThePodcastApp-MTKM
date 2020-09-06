@@ -31,6 +31,7 @@ abstract class BaseModel {
             .build()
 
         mPodcastApi = retrofit.create(PodcastApi::class.java)
+
     }
 
     fun initDatabase(context: Context){

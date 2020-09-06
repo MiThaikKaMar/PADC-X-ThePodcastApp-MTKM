@@ -1,0 +1,19 @@
+package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+
+@Entity(tableName = "download_entity")
+data class DownloadVO(
+       @PrimaryKey
+       val download_id : String,
+       val donwload_podcast_title: String,
+       val download_podcast_description : String,
+       val download_podcast_url: String,
+       val download_audio_path : String
+)
+{
+//   @PrimaryKey(autoGenerate = true)
+//   var download_id: Int = 0 // or foodId: Int? = null
+}

@@ -5,10 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.DetailVO
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.GeneresVO
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.PlaylistVO
-import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.RandomVO
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.*
 
 @Dao
 interface PodcastDao {
@@ -39,4 +36,13 @@ interface PodcastDao {
 
     @Query("SELECT * FROM detail_entity")
     fun getDetail():LiveData<DetailVO>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertDownloadPodcastData(podcasts: DownloadVO)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertDownloadPodCastList(podCast: List<DownloadVO>)
+
+    @Query("select * from download_entity")
+    fun getAllDownloadPodcastData(): LiveData<List<DownloadVO>>
 }

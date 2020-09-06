@@ -15,6 +15,12 @@ class UpNextViewHolder(itemView: View,delegate : ShowDelegate) : BaseViewHolder<
              it.data?.id2?.let { it1 -> delegate.onTapItem(it1) }
          }
      }
+        itemView.iv_download.setOnClickListener {
+            mData?.let {
+                it.data?.let {
+                    delegate.onTapDownloadPodcastItem(it) }
+            }
+        }
     }
 
     override fun bindData(data: PlaylistVO) {

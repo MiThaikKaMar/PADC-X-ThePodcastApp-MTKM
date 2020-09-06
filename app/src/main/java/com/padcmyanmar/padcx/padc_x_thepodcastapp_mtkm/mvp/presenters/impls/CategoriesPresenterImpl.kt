@@ -11,7 +11,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.CategoriesView
 
 class CategoriesPresenterImpl : CategoriesPresenter ,AbstractBasePresenter<CategoriesView>() {
 
-    val mPodcastModelImpl : PodcastModel = PodcastModelImpl
+    var mPodcastModelImpl : PodcastModel = PodcastModelImpl
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner,id:String) {
         requestGenresList(lifecycleOwner)
