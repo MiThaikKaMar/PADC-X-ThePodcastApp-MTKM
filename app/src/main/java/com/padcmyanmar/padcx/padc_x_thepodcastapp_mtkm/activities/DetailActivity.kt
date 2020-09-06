@@ -7,6 +7,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
@@ -14,16 +15,21 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.DetailVO
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.DetailPresenter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.DetailPresenterImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.DetailView
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.utils.DOWNLOADPAGE
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.utils.PLAYER_TYPE_FILE
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.utils.PLAYER_TYPE_STREAMING
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.MiniPlayBackViewPod
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.PlayBackViewPod
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.fragment_podcast.*
+import mk.padc.share.utils.verifyAvailableNetwork
+import mk.podcast.com.medias.MyMediaPlayerHelper
 import java.util.concurrent.TimeUnit
 
 class DetailActivity : AppCompatActivity(),DetailView {
 
 
-
+    private var initPlayer = false
     private lateinit var mDetailPresenter : DetailPresenter
     private lateinit var mMiniViewPod : MiniPlayBackViewPod
 
@@ -52,8 +58,11 @@ class DetailActivity : AppCompatActivity(),DetailView {
         setUpViewPod()
     }
 
-    private fun setUpListener(){
-
+    private fun setUpListener() {
+        iv_back.setOnClickListener {
+            mDetailPresenter.onClickBack()
+            onBackPressed()
+        }
     }
 
     private fun setUpPresenter(){
@@ -62,11 +71,11 @@ class DetailActivity : AppCompatActivity(),DetailView {
     }
 
     override fun finishActivity() {
-        finish()
+
     }
     private fun setUpViewPod(){
         mMiniViewPod= vp_mini_play as MiniPlayBackViewPod
-
+        mMiniViewPod.setDelegate(mDetailPresenter)
     }
 
     override fun showDetail(detail: DetailVO) {
@@ -83,8 +92,56 @@ class DetailActivity : AppCompatActivity(),DetailView {
 
     }
 
+    override fun onTouchPlayPauseIcon(audioUri: String) {
+        if (intent.getStringExtra(FROMPAGE).toString().equals(DOWNLOADPAGE)) {
+            // If download fragment pass, no need to check intentert connection
+            mediaPlayerSetup(audioUri)
+        } else {
+            //if other fragment pass, need to check internet connection ,  this case to solve offline open player gerbage time data
+            if (!verifyAvailableNetwork(this)) {
+                Toast.makeText(this, "Please Check Internet Connection , This is streaming type", Toast.LENGTH_SHORT).show()
+            } else {
+                mediaPlayerSetup(audioUri)
+            }
+        }
+    }
+
+    fun mediaPlayerSetup(audioUri: String) {
+        if (!initPlayer) {
+
+            var type = PLAYER_TYPE_STREAMING
+            var mAudioUrl = audioUri
+
+            // If download fragment pass, media player require download audio filepath
+            if (intent.getStringExtra(FROMPAGE).toString().equals(DOWNLOADPAGE)) {
+                type = PLAYER_TYPE_FILE
+                mAudioUrl = intent.getStringExtra(DOWNLOAD_AUDI_FILE_PATH).toString()
+            }
+            // First time media player initialization , fix duplicate player create case
+            MyMediaPlayerHelper.initMediaPlayer(
+                this, mAudioUrl,
+                mMiniViewPod.getSeekBar(),
+                mMiniViewPod.getPlayPauseImage(),
+                mMiniViewPod.getCurrentTimeLabel(),
+                mMiniViewPod.getTotalTimeLabel(), type
+            )
+            initPlayer = true
+        } else {
+            //  touch event player play pause toggle
+            MyMediaPlayerHelper.playPauseMediaPlayBack(this)
+        }
+    }
+
+    override fun onTouchForwardThirtySecIcon() {
+        MyMediaPlayerHelper.forwardMediaPlayBack(this)
+    }
+
+    override fun onTouchBackwardFifteenSecIcon() {
+        MyMediaPlayerHelper.backwardMediaPlayBack(this)
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
-        finish()
+        if (initPlayer) MyMediaPlayerHelper.closeMediaPlayBack(this)
     }
 }

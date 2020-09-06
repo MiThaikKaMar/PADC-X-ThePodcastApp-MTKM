@@ -8,6 +8,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.delegates.DownloadDelegat
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.delegates.ShowDelegate
 import com.padcmyanmar.padcx.shared.viewholders.BaseViewHolder
 import kotlinx.android.synthetic.main.item_your_show.view.*
+import mk.padc.share.utils.load
 
 class YourShowViewHolder(itemView: View,delegate: DownloadDelegate) : BaseViewHolder<DownloadVO>(itemView) {
     init {
@@ -21,10 +22,7 @@ class YourShowViewHolder(itemView: View,delegate: DownloadDelegate) : BaseViewHo
     override fun bindData(data: DownloadVO) {
         mData=data
 
-        Glide.with(itemView)
-            .load(mData?.download_podcast_url)
-            .into(itemView.iv_show_profile)
-
+        mData?.download_podcast_url?.let { itemView.iv_show_profile.load(it) }
         itemView.tv_show_title.text=mData?.donwload_podcast_title
         itemView.tv_show_description.text=mData?.download_podcast_description
 

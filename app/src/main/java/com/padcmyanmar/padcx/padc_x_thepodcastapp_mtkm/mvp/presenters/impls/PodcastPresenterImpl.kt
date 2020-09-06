@@ -37,7 +37,7 @@ class PodcastPresenterImpl : PodcastPresenter,AbstractBasePresenter<PodcastView>
         mPodcastModelImpl.getPlayList()
             .observe(lifecycleOwner, Observer {
                 it?.let {
-                    mView?.showPlayList(it)
+                    mView?.displayPlayList(it)
                 }
             })
     }
@@ -45,7 +45,7 @@ class PodcastPresenterImpl : PodcastPresenter,AbstractBasePresenter<PodcastView>
 
 
     override fun onTapItem(id :String) {
-        mView?.navigateDetail(id)
+        mView?.navigateToDetailScreen(id)
     }
 
     override fun onTapDownloadPodcastItem(dataVO: DataVO) {
@@ -54,11 +54,23 @@ class PodcastPresenterImpl : PodcastPresenter,AbstractBasePresenter<PodcastView>
             dataVO.thumbnail, dataVO.title.trim().substring(0,8))
 
         mPodcastModelImpl.saveDownloadPodcastItem(downloadVO,onSuccess = {}, onError = {})
-        mView?.showDownload(dataVO)
+        mView?.selectedDownloadItem(dataVO)
+    }
+
+    override fun onTouchPlayPause(audioUrl: String) {
+        mView?.onTouchPlayPauseImage(audioUrl)
+    }
+
+    override fun onTouchFifteenSec() {
+        mView?.onTouchBackwardFifteenSecIcon()
+    }
+
+    override fun onTouchThirtySec() {
+        mView?.onTouchForwardThirtySecIcon()
     }
 
 
-    override fun onClickDownload(context: Context, data: DataVO) {
+    override fun onDownloadPodcastItem(context: Context, data: DataVO) {
         mPodcastModelImpl.startDownloadPodcast(context,data)
     }
 }

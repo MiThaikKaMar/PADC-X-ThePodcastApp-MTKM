@@ -17,7 +17,6 @@ class YourShowPresenterImpl : YourShowPresenter, AbstractBasePresenter<YourShowV
         mPodcastModel.getDownloadPodcastList ( onError = {})
             .observe(lifecycleOwner, androidx.lifecycle.Observer {
                 it?.let {
-                    Log.e("Count1",it.count().toString())
                     mView?.displayDownloadPodcastList(it)
                 }
             })

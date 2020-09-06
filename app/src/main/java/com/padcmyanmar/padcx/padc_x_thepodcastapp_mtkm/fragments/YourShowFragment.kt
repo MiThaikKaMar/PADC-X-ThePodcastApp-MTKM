@@ -60,6 +60,7 @@ class YourShowFragment : BaseFragment(), YourShowView {
         super.onViewCreated(view, savedInstanceState)
 
         setUpPresenter()
+        mYourShowPresenter.onUiReady(this,"")
         setUpRecyclerView()
 
     }
@@ -82,8 +83,6 @@ class YourShowFragment : BaseFragment(), YourShowView {
     }
 
     override fun displayDownloadPodcastList(list: List<DownloadVO>) {
-
-        Log.e("Count",list.count().toString())
         mYourShowAdapter.setData(list.toMutableList())
     }
 }

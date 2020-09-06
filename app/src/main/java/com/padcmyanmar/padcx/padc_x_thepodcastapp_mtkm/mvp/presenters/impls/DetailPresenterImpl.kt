@@ -15,6 +15,18 @@ class DetailPresenterImpl : DetailPresenter, AbstractBasePresenter<DetailView>()
         requestDetail(lifecycleOwner,id)
     }
 
+    override fun onTouchPlayPause(audioUri : String) {
+        mView?.onTouchPlayPauseIcon(audioUri)
+    }
+
+    override fun onTouchFifteenSec() {
+        mView?.onTouchBackwardFifteenSecIcon()
+    }
+
+    override fun onTouchThirtySec() {
+        mView?.onTouchForwardThirtySecIcon()
+    }
+
     private fun requestDetail(lifecycleOwner: LifecycleOwner, id: String) {
 
 

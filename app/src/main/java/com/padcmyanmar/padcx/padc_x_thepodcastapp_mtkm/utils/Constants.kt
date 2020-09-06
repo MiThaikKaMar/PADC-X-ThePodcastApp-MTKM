@@ -37,4 +37,6 @@ const val VALUE_SORT="recent_added_first"
 
 const val HOMEPAGE = "home"
 const val DOWNLOADPAGE = "downlod"
+const val PLAYER_TYPE_STREAMING= "streaming"
+const val PLAYER_TYPE_FILE= "assetfile"
 

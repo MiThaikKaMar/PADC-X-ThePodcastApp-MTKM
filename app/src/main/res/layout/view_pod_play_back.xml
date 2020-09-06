@@ -56,10 +56,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/margin_medium"/>
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_stop"
+        android:id="@+id/iv_next"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/lb_ic_skip_next"
+        android:src="@drawable/ic_baseline_refresh_24"
         android:layout_toEndOf="@id/iv_play_pause"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/margin_medium_3"/>
@@ -67,7 +67,7 @@
         android:id="@+id/iv_previous"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/lb_ic_skip_previous"
+        android:src="@drawable/ic_baseline_replay_10_24"
         android:layout_toStartOf="@id/iv_play_pause"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/margin_medium_3"/>
@@ -75,21 +75,33 @@
         android:id="@+id/tv_1x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pause"
+        android:text="1x"
+        android:textStyle="bold"
         android:textColor="@color/colorFullWhite"
-        android:textSize="@dimen/text_regular"
+        android:textSize="@dimen/text_regular_3x"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@id/iv_previous"
 
         android:layout_marginBottom="@dimen/margin_large"/>
     <TextView
+        android:id="@+id/tv_time_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1h left"
+        android:textColor="@color/colorGrayLight"
+        android:layout_toEndOf="@id/seek_bar_play"
+        android:layout_below="@id/tv_play_description"
+        android:layout_marginTop="@dimen/margin_small"/>
+    <TextView
         android:id="@+id/tv_zz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorFullWhite"
-        android:textSize="@dimen/text_regular"
+        android:textSize="@dimen/text_regular_3x"
+        android:text="Zz"
+        android:textStyle="bold"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@id/iv_stop"
+        android:layout_toEndOf="@id/iv_next"
         android:layout_marginBottom="@dimen/margin_large"/>
 
 </com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.PlayBackViewPod>

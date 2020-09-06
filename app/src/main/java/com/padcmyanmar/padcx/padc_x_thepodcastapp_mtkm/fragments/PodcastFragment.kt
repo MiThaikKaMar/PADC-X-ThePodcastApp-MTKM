@@ -25,10 +25,13 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.PodcastPre
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.PodcastPresenterImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.PodcastView
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.utils.HOMEPAGE
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.utils.PLAYER_TYPE_STREAMING
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.EmptyViewPod
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.PlayBackViewPod
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_podcast.*
+import mk.padc.share.utils.verifyAvailableNetwork
+import mk.podcast.com.medias.MyMediaPlayerHelper
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -37,6 +40,7 @@ class PodcastFragment : BaseFragment(),PodcastView {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var initPlayer = false
     private lateinit var mPlayBackViewPod : PlayBackViewPod
     private lateinit var mPodcastPresenter : PodcastPresenter
     private lateinit var mUpNextAdapter : UpNextAdapter
@@ -76,9 +80,10 @@ class PodcastFragment : BaseFragment(),PodcastView {
         super.onViewCreated(view, savedInstanceState)
 
         setUpPresenter()
-        mPodcastPresenter.onUiReady(this,"")
-        setUpRecyclerView()
         setUpViewPod()
+        setUpRecyclerView()
+        mPodcastPresenter.onUiReady(this,"")
+
     }
     private fun setUpPresenter(){
         mPodcastPresenter=ViewModelProviders.of(this).get(PodcastPresenterImpl::class.java)
@@ -87,7 +92,7 @@ class PodcastFragment : BaseFragment(),PodcastView {
 
     private fun setUpRecyclerView(){
 
-        mEmptyVP = vp_empty as EmptyViewPod
+
         mUpNextAdapter= UpNextAdapter(mPodcastPresenter)
         val layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
         rv_up_next.adapter=mUpNextAdapter
@@ -95,8 +100,8 @@ class PodcastFragment : BaseFragment(),PodcastView {
         rv_up_next.setEmpytView(mEmptyVP)
     }
 
-    override fun navigateDetail(id:String) {
-        startActivity(DetailActivity.newIntent(this.requireContext(),id, HOMEPAGE,""))
+    override fun navigateToDetailScreen(episodeID:String) {
+        startActivity(DetailActivity.newIntent(activity as Context,episodeID, HOMEPAGE,""))
     }
 
     override fun showRandomEpisode(randomEpisode: RandomVO) {
@@ -104,17 +109,20 @@ class PodcastFragment : BaseFragment(),PodcastView {
             tv_description.text= Html.fromHtml(randomEpisode.description)
     }
 
-    override fun showPlayList(list: List<PlaylistVO>) {
+    override fun displayPlayList(list: List<PlaylistVO>) {
         mUpNextAdapter.setData(list.toMutableList())
     }
 
 
     private fun setUpViewPod(){
         mPlayBackViewPod= vp_play_back as PlayBackViewPod
+        mPlayBackViewPod.setDelegate(mPodcastPresenter)
+
+        mEmptyVP = vp_empty as EmptyViewPod
     }
 
 
-    override fun showDownload(data: DataVO) {
+    override fun selectedDownloadItem(data: DataVO) {
         setupData(data)
     }
 
@@ -127,7 +135,7 @@ class PodcastFragment : BaseFragment(),PodcastView {
         if (permission != PackageManager.PERMISSION_GRANTED) {
             makeRequest()
         } else {
-            data?.let {  mPodcastPresenter?.onClickDownload(activity as Context,it) }
+            data?.let {  mPodcastPresenter?.onDownloadPodcastItem(activity as Context,it) }
         }
     }
 
@@ -155,5 +163,39 @@ class PodcastFragment : BaseFragment(),PodcastView {
                 }
             }
         }
+    }
+
+    override fun onTouchPlayPauseImage(audioUrl: String) {
+        if(!verifyAvailableNetwork(activity as Activity)) {
+            Toast.makeText(activity as Activity, "Please Check Internet Connection , This is streaming type",Toast.LENGTH_SHORT).show()
+        }else{
+            if (!initPlayer) {
+                MyMediaPlayerHelper.initMediaPlayer(
+                    activity as Activity, audioUrl,
+                    mPlayBackViewPod.getSeekBar(),
+                    mPlayBackViewPod.getPlayPauseImage(),
+                    mPlayBackViewPod.getRemainingTime(),
+                    mPlayBackViewPod.getRemainingTime(),
+                    PLAYER_TYPE_STREAMING
+                )
+                initPlayer = true
+            } else {
+                MyMediaPlayerHelper.playPauseMediaPlayBack(activity as Activity)
+            }
+        }
+    }
+
+    override fun onTouchForwardThirtySecIcon() {
+        MyMediaPlayerHelper.forwardMediaPlayBack(activity as Activity)
+    }
+
+    override fun onTouchBackwardFifteenSecIcon() {
+        MyMediaPlayerHelper.backwardMediaPlayBack(activity as Activity)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //if init player not create , we dont need to close , player init crash issue fix
+        //if(initPlayer)  MyMediaPlayerHelper.mediaPlayerStopPlayBack(activity as Activity)
     }
 }

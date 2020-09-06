@@ -38,5 +38,9 @@ dependencies {
 
     implementation rootProject.ext.libraries.rxbindingrecyclerview
 
+    //Glide
+    implementation rootProject.ext.libraries.glide
+    annotationProcessor rootProject.ext.libraries.glidecompiler
+
 
 }

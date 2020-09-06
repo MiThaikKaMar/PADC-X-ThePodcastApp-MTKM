@@ -1,153 +1,73 @@
 package com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.media.AudioAttributes
-import android.media.MediaPlayer
-import android.net.Uri
-import android.os.Handler
-import android.os.Looper
 
+import android.content.Context
 import android.text.Html
 import android.util.AttributeSet
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.SeekBar
-import android.widget.Toast
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.RandomVO
 import kotlinx.android.synthetic.main.view_pod_play_back.view.*
+import mk.padc.share.utils.load
 
 
 class PlayBackViewPod @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
 
-    private lateinit var mediaPlayer: MediaPlayer
-    private lateinit var runnable:Runnable
-
-    private var pause:Boolean = false
-
-    private var myUrl = context.getString(R.string.my_url_string)
-    private lateinit var myUrlString : String
+    private var mDelegate: Delegate? = null
+    private var mAudioUrl : String ?=null
 
     override fun onFinishInflate() {
         super.onFinishInflate()
 
-        var handler= Handler(Looper.getMainLooper())
-        mediaPlayer = MediaPlayer.create(this.context, Uri.parse(myUrl))
-//        mediaPlayer.start()
-        // Start the media player
-        iv_play_pause.setOnClickListener {
-            if (pause) {
-                mediaPlayer.seekTo(mediaPlayer.currentPosition)
-                mediaPlayer.start()
-                pause = false
-
-                Toast.makeText(this.context, "media playing", Toast.LENGTH_SHORT).show()
-            } else {
-
-                mediaPlayer.start()
-                Toast.makeText(this.context,"media playing", Toast.LENGTH_SHORT).show()
-
-            }
-            initializeSeekBar()
-            iv_play_pause.isEnabled = false
-            tv_1x.isEnabled = true
-            tv_zz.isEnabled = true
-
-            mediaPlayer.setOnCompletionListener {
-                iv_play_pause.isEnabled = true
-                tv_1x.isEnabled = false
-                tv_zz.isEnabled = false
-                Toast.makeText(this.context, "end", Toast.LENGTH_SHORT).show()
-            }
-        }
-        // Pause the media player
-        tv_1x.setOnClickListener {
-            if(mediaPlayer.isPlaying){
-                mediaPlayer.pause()
-                pause = true
-
-                iv_play_pause.isEnabled = true
-                tv_1x.isEnabled = false
-                tv_zz.isEnabled = true
-                Toast.makeText(this.context,"media pause", Toast.LENGTH_SHORT).show()
-            }
-        }
-        // Stop the media player
-//        iv_stop.setOnClickListener{
-//            if(mediaPlayer.isPlaying || pause.equals(true)){
-//                pause = false
-//                seek_bar_play.setProgress(0)
-//                mediaPlayer.stop()
-//                mediaPlayer.reset()
-//                mediaPlayer.release()
-//                handler.removeCallbacks(runnable)
-//
-//                iv_play_pause.isEnabled = true
-//                tv_1x.isEnabled = false
-//                tv_zz.isEnabled = false
-////                tv_pass.text = ""
-////                tv_left.text = ""
-//                Toast.makeText(this.context,"media stop", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-
-
-        // Seek bar change listener
-        seek_bar_play.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                if (b) {
-                    mediaPlayer.seekTo(i * 1000)
-                }
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-            }
-        })
+        setUpListener()
     }
 
-    // Method to initialize seek bar and audio stats
-    @SuppressLint("SetTextI18n")
-    private fun initializeSeekBar() {
-        seek_bar_play.max = mediaPlayer.seconds
-
-        runnable = Runnable {
-            seek_bar_play.progress = mediaPlayer.currentSeconds
-
-//            tv_zz.text = "${mediaPlayer.currentSeconds} sec"
-            val diff = mediaPlayer.seconds - mediaPlayer.currentSeconds
-            tv_zz.text = "$diff sec left"
-
-//            handler.postDelayed(runnable, 1000)
-        }
-//        handler.postDelayed(runnable, 1000)
-    }
 
     fun setData(episode: RandomVO) {
-        Glide.with(this)
-            .load(episode.image)
-            .into(iv_play_back)
 
+        iv_play_back.load(episode.image)
         tv_play_title.text = episode.title
         tv_play_description.text = Html.fromHtml(episode.description)
 
-        myUrlString= episode.audio
+        mAudioUrl = episode.audio
 
     }
+
+    fun getPlayPauseImage() : ImageView {
+        return iv_play_pause
+    }
+    fun getSeekBar() : SeekBar
+    {
+        return seek_bar_play
+    }
+    fun getRemainingTime() : TextView {
+        return tv_time_left
+    }
+
+    fun setDelegate(delegate: Delegate) {
+        mDelegate = delegate
+    }
+
+    private fun setUpListener() {
+        iv_next.setOnClickListener { mDelegate?.onTouchThirtySec() }
+        iv_previous.setOnClickListener { mDelegate?.onTouchFifteenSec() }
+
+        iv_play_pause.setOnClickListener {
+            mAudioUrl?.let { it1 -> mDelegate?.onTouchPlayPause(it1) }
+        }
+    }
+
+    interface Delegate {
+        fun onTouchPlayPause(audioUrl : String)
+        fun onTouchFifteenSec()
+        fun onTouchThirtySec()
+    }
 }
-// Creating an extension property to get the media player time duration in seconds
-val MediaPlayer.seconds:Int
-    get() {
-        return this.duration / 1000
-    }
-// Creating an extension property to get media player current position in seconds
-val MediaPlayer.currentSeconds:Int
-    get() {
-        return this.currentPosition / 1000
-    }
+
 
