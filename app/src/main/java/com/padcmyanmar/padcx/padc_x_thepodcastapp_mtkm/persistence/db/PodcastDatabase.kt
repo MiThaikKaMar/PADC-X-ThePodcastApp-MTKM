@@ -10,7 +10,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.utils.DATABASE_NAME
 
 
 @Database(entities =[GeneresVO::class,RandomVO::class,PlaylistVO::class,DetailVO::class,DownloadVO::class] ,
-version =13 ,
+version =17 ,
 exportSchema = false)
 abstract class PodcastDatabase : RoomDatabase() {
     companion object {

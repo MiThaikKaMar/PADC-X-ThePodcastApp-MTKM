@@ -11,7 +11,7 @@
     android:id="@+id/iv_show_profile"
     android:layout_width="90dp"
     android:layout_height="120dp"
-    android:src="@drawable/upnext"
+    android:src="@drawable/placeholder"
     android:scaleType="centerCrop"/>
     <Button
         android:id="@+id/btn_show_categories"

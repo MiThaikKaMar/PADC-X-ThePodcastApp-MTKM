@@ -15,6 +15,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.CategoriesView
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.EmptyViewPod
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_categories.*
+import mk.padc.share.utils.load
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -77,9 +78,8 @@ private lateinit var mCategoriesPresenter : CategoriesPresenter
         mCategoriesAdapter.setData(genresList.toMutableList())
     }
 
-    override fun showMainCategory(genresList: List<GeneresVO>) {
-
-//            tv_main_cate.text=genresList[0].name
-
+    override fun showMainCategory(list: List<GeneresVO>) {
+        iv_cate.load(getString(R.string.image))
+        tv_main_cate.text=getString(R.string.name)
     }
 }

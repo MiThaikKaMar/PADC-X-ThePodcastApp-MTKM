@@ -20,7 +20,7 @@
         android:id="@+id/iv_cate"
         android:layout_width="match_parent"
         android:layout_height="390dp"
-        android:src="@drawable/category"
+        android:src="@drawable/placeholder"
         android:scaleType="centerCrop"
         android:layout_marginTop="@dimen/margin_xlarge"
         android:layout_marginStart="@dimen/margin_medium"

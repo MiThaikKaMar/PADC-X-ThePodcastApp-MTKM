@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.widget.*
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.DetailVO
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.PlaylistVO
 import kotlinx.android.synthetic.main.view_pod_mini_play_back.view.*
 import kotlinx.android.synthetic.main.view_pod_mini_play_back.view.tv_mini_1x
 import kotlinx.android.synthetic.main.view_pod_play_back.view.*

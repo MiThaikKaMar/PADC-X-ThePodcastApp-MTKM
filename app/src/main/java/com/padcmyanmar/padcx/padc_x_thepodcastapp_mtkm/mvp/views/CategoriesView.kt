@@ -5,5 +5,5 @@ import com.padcmyanmar.padcx.shared.mvp.views.BaseView
 
 interface CategoriesView : BaseView {
     fun showGenresList(genresList : List<GeneresVO>)
-    fun showMainCategory(genresList: List<GeneresVO>)
+    fun showMainCategory(list : List<GeneresVO>)
 }

@@ -10,7 +10,7 @@
     android:id="@+id/iv_profile"
     android:layout_width="90dp"
     android:layout_height="120dp"
-    android:src="@drawable/upnext"
+    android:src="@drawable/placeholder"
     android:scaleType="centerCrop"/>
     <Button
         android:id="@+id/btn_categories"
@@ -45,6 +45,7 @@
         android:layout_below="@id/btn_categories"
         android:layout_marginTop="@dimen/margin_medium"
         android:layout_alignParentRight="true"
+        android:tint="#ec5757"
         />
 
     <ProgressBar

@@ -9,5 +9,6 @@ data class GeneresVO(
     @PrimaryKey
     @SerializedName("id")var id: Int=0,
     @SerializedName("name")var name: String="",
-    @SerializedName("parent_id")var parent_id: Int=0
+    @SerializedName("parent_id")var parent_id: Int=0,
+    @SerializedName("image")var image: String=""
 )

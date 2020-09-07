@@ -15,7 +15,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.PodcastView
 
 class PodcastPresenterImpl : PodcastPresenter,AbstractBasePresenter<PodcastView>() {
 
-    val mPodcastModelImpl :PodcastModel=PodcastModelImpl
+    var mPodcastModelImpl :PodcastModel=PodcastModelImpl
 
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner,id: String) {
@@ -50,7 +50,7 @@ class PodcastPresenterImpl : PodcastPresenter,AbstractBasePresenter<PodcastView>
 
     override fun onTapDownloadPodcastItem(dataVO: DataVO) {
         val downloadVO: DownloadVO = DownloadVO(
-            dataVO.id2, dataVO.title, dataVO.description,
+            dataVO.data_id, dataVO.title, dataVO.description,
             dataVO.thumbnail, dataVO.title.trim().substring(0,8))
 
         mPodcastModelImpl.saveDownloadPodcastItem(downloadVO,onSuccess = {}, onError = {})

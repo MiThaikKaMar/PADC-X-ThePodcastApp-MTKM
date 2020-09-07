@@ -58,12 +58,14 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
     }
 
     @SuppressLint("CheckResult")
-    override fun getDeatil(detailId : String) : LiveData<DetailVO> {
-        mPodcastApi.getDetail(DETAIL_VALUE, PARAM_API_VALUE)
+    override fun getDeatil(detailId : String,
+    onSuccess: (detail : DetailVO) -> Unit) : LiveData<DetailVO> {
+        mPodcastApi.getDetail(detailId, PARAM_API_VALUE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({
-                mPodcastDB.podcastDao().setDetail(it)
+//                mPodcastDB.podcastDao().setDetail(it)
+                onSuccess(it)
             },{
                 Log.e("Error",it.toString())
             })

@@ -8,7 +8,7 @@ interface PodcastModel  {
     fun getGenresList():LiveData<List<GeneresVO>>
     fun getRandomEpisode():LiveData<RandomVO>
     fun getPlayList(): LiveData<List<PlaylistVO>>
-    fun getDeatil(detailId : String): LiveData<DetailVO>
+    fun getDeatil(detailId : String,onSuccess: (detail:DetailVO) -> Unit): LiveData<DetailVO>
 
     fun startDownloadPodcast(context: Context, dataVO: DataVO)
     fun getDownloadPodcastList(onError: (String) -> Unit) : LiveData<List<DownloadVO>>

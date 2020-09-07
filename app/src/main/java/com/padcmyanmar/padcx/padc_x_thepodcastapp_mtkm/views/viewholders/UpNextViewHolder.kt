@@ -12,7 +12,8 @@ class UpNextViewHolder(itemView: View,delegate : ShowDelegate) : BaseViewHolder<
     init {
      itemView.setOnClickListener {
          mData?.let {
-             delegate.onTapItem(it.data?.id2 ?: "")
+                 it.data?.data_id?.let { it1 -> delegate.onTapItem(it1) }
+
          }
      }
         itemView.iv_download.setOnClickListener {

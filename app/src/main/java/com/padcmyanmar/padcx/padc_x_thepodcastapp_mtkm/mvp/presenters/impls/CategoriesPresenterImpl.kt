@@ -19,9 +19,10 @@ class CategoriesPresenterImpl : CategoriesPresenter ,AbstractBasePresenter<Categ
 
     private fun requestGenresList(lifecycleOwner: LifecycleOwner){
         mPodcastModelImpl.getGenresList().observe(lifecycleOwner,Observer {
-            mView?.showGenresList(it)
-            mView?.showMainCategory(it)
+            it?.let {
+                mView?.showGenresList(it)
+                mView?.showMainCategory(it)
+            }
         })
-
     }
 }

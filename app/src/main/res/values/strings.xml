@@ -9,4 +9,6 @@
     <string name="forward"><![CDATA[>>]]></string>
     <string name="pause">||</string>
     <string name="my_url_string">https://www.listennotes.com/e/p/6a15b804507a4387bc51450bb173146f/</string>
+    <string name="image">https://cdn-images-1.listennotes.com/podcasts/rise-of-the-young-casey-adams-v_hFQlZeGx2-YuarHs5lfDI.1400x1400.jpg</string>
+    <string name="name">TV &amp; Film</string>
 </resources>

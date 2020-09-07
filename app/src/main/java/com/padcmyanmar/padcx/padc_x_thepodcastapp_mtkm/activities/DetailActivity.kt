@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.R
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.DetailVO
+import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.PlaylistVO
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.DetailPresenter
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.presenters.impls.DetailPresenterImpl
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.mvp.views.DetailView

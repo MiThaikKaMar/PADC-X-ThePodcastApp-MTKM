@@ -21,7 +21,7 @@ data class DataVO(
     @SerializedName("audio_length_sec")var audio_length_sec: Int,
     @SerializedName("description")var description: String,
     @SerializedName("explicit_content")var explicit_content: Boolean,
-    @SerializedName("id")var id2: String,
+    @SerializedName("id")var data_id: String,
     @SerializedName("image")var image: String,
     @SerializedName("link")var link: String,
     @SerializedName("listennotes_edit_url")var listennotes_edit_url: String,

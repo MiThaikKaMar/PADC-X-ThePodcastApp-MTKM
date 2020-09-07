@@ -8,27 +8,17 @@
     android:id="@+id/iv_empty"
     android:layout_width="200dp"
     android:layout_height="200dp"
-    android:src="@drawable/empty"
+    android:src="@drawable/placeholder"
     android:layout_centerInParent="true"/>
     <TextView
         android:id="@+id/tv_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Opps, there's something wrong!"
+        android:text="Loading....."
         android:layout_below="@id/iv_empty"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/margin_medium_3"
+        android:layout_margin="@dimen/margin_large"
         android:textStyle="bold"
         android:textSize="@dimen/text_regular_3x"
         />
-    <Button
-        android:id="@+id/btn_empty"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:text="Try Again."
-        android:textColor="@color/colorFullWhite"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/margin_medium_3"
-        android:background="@drawable/rounded_button1"/>
 </com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.EmptyViewPod>
