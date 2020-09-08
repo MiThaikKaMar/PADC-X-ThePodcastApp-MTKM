@@ -68,8 +68,9 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
                 onSuccess(it)
             },{
                 Log.e("Error",it.toString())
+
             })
-        return mPodcastDB.podcastDao().getDetail()
+        return mPodcastDB.podcastDao().getDetail(detailId)
 
     }
 

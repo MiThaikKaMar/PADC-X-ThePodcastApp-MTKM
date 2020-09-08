@@ -34,8 +34,8 @@ interface PodcastDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun setDetail(detail : DetailVO)
 
-    @Query("SELECT * FROM detail_entity")
-    fun getDetail():LiveData<DetailVO>
+    @Query("SELECT * FROM detail_entity WHERE :id")
+    fun getDetail(id:String):LiveData<DetailVO>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDownloadPodcastData(podcasts: DownloadVO)
