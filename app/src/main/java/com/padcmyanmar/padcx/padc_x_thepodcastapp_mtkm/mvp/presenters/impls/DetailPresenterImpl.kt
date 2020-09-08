@@ -37,11 +37,12 @@ class DetailPresenterImpl : DetailPresenter, AbstractBasePresenter<DetailView>()
         mPodcastModel.getDeatil(id ,
         onSuccess = {
             Log.e("Error",it.id)
-            mView?.showDetail(it)
+
         })
             .observe(lifecycleOwner, Observer {
                 it?.let {
-                    list= listOf(it)
+                    mView?.showDetail(it)
+                    Log.e("Id",it.id)
                 }
             })
     }

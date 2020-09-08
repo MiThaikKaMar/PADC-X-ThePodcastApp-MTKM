@@ -64,7 +64,7 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({
-//                mPodcastDB.podcastDao().setDetail(it)
+                mPodcastDB.podcastDao().setDetail(it)
                 onSuccess(it)
             },{
                 Log.e("Error",it.toString())
