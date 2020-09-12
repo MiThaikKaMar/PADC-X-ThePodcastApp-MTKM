@@ -13,9 +13,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 object PodcastModelImpl : PodcastModel, BaseModel() {
-
     @SuppressLint("CheckResult")
-    override fun getGenresList(): LiveData<List<GeneresVO>> {
+    override fun getGenresListFromApiAndSaveDB() {
         mPodcastApi.getGenresList(PARAM_API_VALUE, VALUE_TOP_LEVEL_ONLY)
             .map {
                 it.genres
@@ -25,11 +24,15 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
             .subscribe {
                 mPodcastDB.podcastDao().setGenresList(it ?: listOf())
             }
+    }
+
+
+    override fun getGenresList(): LiveData<List<GeneresVO>> {
         return mPodcastDB.podcastDao().getGenresList()
     }
 
     @SuppressLint("CheckResult")
-    override fun getRandomEpisode(): LiveData<RandomVO> {
+    override fun getRandomEpisodeFromApiAndSaveDB() {
         mPodcastApi.getRandomEpisode(PARAM_API_VALUE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -38,11 +41,15 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
                     mPodcastDB.podcastDao().setRandomEpisode(it)
                 }
             }
+    }
+
+
+    override fun getRandomEpisode(): LiveData<RandomVO> {
         return mPodcastDB.podcastDao().getRandomEpisode()
     }
 
     @SuppressLint("CheckResult")
-    override fun getPlayList(): LiveData<List<PlaylistVO>> {
+    override fun getPlayListFromApiAndSaveDB() {
         mPodcastApi.getPlayList(PODCAST_ID, VALUE_TYPE, VALUE_LAST_TIMESTAMP, VALUE_SORT,PARAM_API_VALUE)
             .map {
                 it.items
@@ -54,12 +61,14 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
                     mPodcastDB.podcastDao().setPlayList(it)
                 }
             }
+    }
+
+    override fun getPlayList(): LiveData<List<PlaylistVO>> {
         return mPodcastDB.podcastDao().getPlayList()
     }
 
     @SuppressLint("CheckResult")
-    override fun getDeatil(detailId : String,
-    onSuccess: (detail : DetailVO) -> Unit) : LiveData<DetailVO> {
+    override fun getDetailFromApiAndSaveDB(detailId: String,onSuccess: (detail : DetailVO) -> Unit) {
         mPodcastApi.getDetail(detailId, PARAM_API_VALUE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -70,6 +79,10 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
                 Log.e("Error",it.toString())
 
             })
+    }
+
+    override fun getDeatil(detailId : String
+    ) : LiveData<DetailVO> {
         return mPodcastDB.podcastDao().getDetail(detailId)
 
     }

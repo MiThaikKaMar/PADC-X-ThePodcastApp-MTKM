@@ -19,6 +19,9 @@ class PodcastPresenterImpl : PodcastPresenter,AbstractBasePresenter<PodcastView>
 
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner,id: String) {
+        mPodcastModelImpl.getRandomEpisodeFromApiAndSaveDB()
+        mPodcastModelImpl.getPlayListFromApiAndSaveDB()
+
         requestRandomEpisode(lifecycleOwner)
         requestPlayList(lifecycleOwner)
     }

@@ -16,6 +16,8 @@ class DetailPresenterImpl : DetailPresenter, AbstractBasePresenter<DetailView>()
     var list : List<DetailVO> = listOf()
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner,id:String) {
+        mPodcastModel.getDetailFromApiAndSaveDB(id,onSuccess = {})
+
         requestDetail(lifecycleOwner,id)
     }
 
@@ -32,13 +34,7 @@ class DetailPresenterImpl : DetailPresenter, AbstractBasePresenter<DetailView>()
     }
 
     private fun requestDetail(lifecycleOwner: LifecycleOwner, id: String) {
-
-
-        mPodcastModel.getDeatil(id ,
-        onSuccess = {
-            Log.e("Error",it.id)
-
-        })
+        mPodcastModel.getDeatil(id)
             .observe(lifecycleOwner, Observer {
                 it?.let {
                     mView?.showDetail(it)

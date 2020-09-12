@@ -10,10 +10,18 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.models.PodcastModel
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.*
 
 object MockPodcastModelImpl : PodcastModel {
+    override fun getGenresListFromApiAndSaveDB() {
+
+    }
+
     override fun getGenresList(): LiveData<List<GeneresVO>> {
         val liveData = MutableLiveData<List<GeneresVO>>()
         liveData.postValue(getGenresVOList())
         return liveData
+    }
+
+    override fun getRandomEpisodeFromApiAndSaveDB() {
+
     }
 
     override fun getRandomEpisode(): LiveData<RandomVO> {
@@ -23,16 +31,24 @@ object MockPodcastModelImpl : PodcastModel {
 
     }
 
+    override fun getPlayListFromApiAndSaveDB() {
+
+    }
+
     override fun getPlayList(): LiveData<List<PlaylistVO>> {
         val liveData = MutableLiveData<List<PlaylistVO>>()
         liveData.postValue(getPlayListVO())
         return liveData
     }
 
-    override fun getDeatil(
+    override fun getDetailFromApiAndSaveDB(
         detailId: String,
         onSuccess: (detail: DetailVO) -> Unit
-    ): LiveData<DetailVO> {
+    ) {
+
+    }
+
+    override fun getDeatil(detailId: String): LiveData<DetailVO> {
         val liveData = MutableLiveData<DetailVO>()
         liveData.postValue(DetailVO())
         return liveData
@@ -55,6 +71,4 @@ object MockPodcastModelImpl : PodcastModel {
     ) {
 
     }
-
-
 }

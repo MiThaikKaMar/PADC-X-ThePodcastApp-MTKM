@@ -14,6 +14,8 @@ class CategoriesPresenterImpl : CategoriesPresenter ,AbstractBasePresenter<Categ
     var mPodcastModelImpl : PodcastModel = PodcastModelImpl
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner,id:String) {
+        mPodcastModelImpl.getGenresListFromApiAndSaveDB()
+
         requestGenresList(lifecycleOwner)
     }
 
