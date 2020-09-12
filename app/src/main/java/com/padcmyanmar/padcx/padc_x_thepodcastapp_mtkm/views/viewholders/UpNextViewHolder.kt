@@ -12,7 +12,7 @@ class UpNextViewHolder(itemView: View,delegate : ShowDelegate) : BaseViewHolder<
     init {
      itemView.setOnClickListener {
          mData?.let {
-                 it.data?.data_id?.let { it1 -> delegate.onTapItem(it1) }
+             it.data?.data_id?.let { it1 -> delegate.onTapItem(it1) }
 
          }
      }

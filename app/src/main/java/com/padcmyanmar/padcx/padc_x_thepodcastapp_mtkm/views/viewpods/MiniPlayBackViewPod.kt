@@ -28,8 +28,8 @@ class MiniPlayBackViewPod @JvmOverloads constructor(
         setUpListener()
     }
 
-    fun setMiniData(detail: DetailVO) {
-        mAudioUri= detail.audio
+    fun setMiniData(detail: PlaylistVO) {
+        mAudioUri= detail.data?.audio.toString()
     }
 
     fun getPlayPauseImage() : ImageView {

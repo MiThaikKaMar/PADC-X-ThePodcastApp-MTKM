@@ -54,6 +54,12 @@ object MockPodcastModelImpl : PodcastModel {
         return liveData
     }
 
+    override fun getDetailById(detailId: String): LiveData<PlaylistVO> {
+        val liveData = MutableLiveData<PlaylistVO>()
+        liveData.postValue(PlaylistVO())
+        return liveData
+    }
+
     override fun startDownloadPodcast(context: Context, dataVO: DataVO) {
 
     }

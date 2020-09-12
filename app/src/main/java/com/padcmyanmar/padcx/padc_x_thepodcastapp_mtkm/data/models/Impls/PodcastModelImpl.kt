@@ -84,7 +84,10 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
     override fun getDeatil(detailId : String
     ) : LiveData<DetailVO> {
         return mPodcastDB.podcastDao().getDetail(detailId)
+    }
 
+    override fun getDetailById(detailId: String): LiveData<PlaylistVO> {
+        return mPodcastDB.podcastDao().getDetailById(detailId)
     }
 
     override fun startDownloadPodcast(context: Context, dataVO: DataVO) {

@@ -34,11 +34,18 @@ class DetailPresenterImpl : DetailPresenter, AbstractBasePresenter<DetailView>()
     }
 
     private fun requestDetail(lifecycleOwner: LifecycleOwner, id: String) {
-        mPodcastModel.getDeatil(id)
-            .observe(lifecycleOwner, Observer {
+//        mPodcastModel.getDeatil(id)
+//            .observe(lifecycleOwner, Observer {
+//                it?.let {
+//                    mView?.showDetail(it)
+//                    Log.e("Id",it.id)
+//                }
+//            })
+        mPodcastModel.getDetailById(id)
+            .observe(lifecycleOwner, Observer() {
                 it?.let {
+                    it.data?.title?.let { it1 -> Log.e("title", it1) }
                     mView?.showDetail(it)
-                    Log.e("Id",it.id)
                 }
             })
     }

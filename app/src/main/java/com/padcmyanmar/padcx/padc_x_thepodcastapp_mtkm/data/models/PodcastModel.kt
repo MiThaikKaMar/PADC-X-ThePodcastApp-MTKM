@@ -16,6 +16,7 @@ interface PodcastModel  {
 
     fun getDetailFromApiAndSaveDB(detailId : String,onSuccess: (detail:DetailVO) -> Unit)
     fun getDeatil(detailId : String): LiveData<DetailVO>
+    fun getDetailById(detailId: String):LiveData<PlaylistVO>
 
     fun startDownloadPodcast(context: Context, dataVO: DataVO)
     fun getDownloadPodcastList(onError: (String) -> Unit) : LiveData<List<DownloadVO>>

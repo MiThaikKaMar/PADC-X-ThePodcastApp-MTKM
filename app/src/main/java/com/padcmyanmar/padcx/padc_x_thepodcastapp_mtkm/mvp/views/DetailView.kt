@@ -7,7 +7,7 @@ import com.padcmyanmar.padcx.shared.mvp.views.BaseView
 interface DetailView : BaseView {
 
     fun finishActivity()
-    fun showDetail(detail: DetailVO)
+    fun showDetail(detail: PlaylistVO)
     fun onTouchPlayPauseIcon(audioUri : String)
     fun onTouchForwardThirtySecIcon()
     fun onTouchBackwardFifteenSecIcon()

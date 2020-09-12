@@ -7,6 +7,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -23,6 +24,7 @@ import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.MiniPlayBa
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.views.viewpods.PlayBackViewPod
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.fragment_podcast.*
+import mk.padc.share.utils.load
 import mk.padc.share.utils.verifyAvailableNetwork
 import mk.podcast.com.medias.MyMediaPlayerHelper
 import java.util.concurrent.TimeUnit
@@ -79,15 +81,12 @@ class DetailActivity : AppCompatActivity(),DetailView {
         mMiniViewPod.setDelegate(mDetailPresenter)
     }
 
-    override fun showDetail(detail: DetailVO) {
+    override fun showDetail(detail: PlaylistVO) {
 
-            Glide.with(this)
-                .load(detail.image)
-                .into(iv_detail)
-
-            tv_detail_title.text=detail.title
-            tv_detail_time.text=detail.audio_length_sec.toString()+"s"
-            tv_detail_description.text=Html.fromHtml(detail.description)
+        detail.data?.image?.let { iv_detail.load(it) }
+            tv_detail_title.text=detail.data?.title
+            tv_detail_time.text=detail.data?.audio_length_sec.toString()+"s"
+            tv_detail_description.text=Html.fromHtml(detail.data?.description)
 
             mMiniViewPod.setMiniData(detail)
 

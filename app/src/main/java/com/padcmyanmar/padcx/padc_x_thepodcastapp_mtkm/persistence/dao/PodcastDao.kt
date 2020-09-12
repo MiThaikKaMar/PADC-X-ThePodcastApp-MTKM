@@ -28,7 +28,7 @@ interface PodcastDao {
     @Query("SELECT * FROM playlist_entity")
     fun getPlayList():LiveData<List<PlaylistVO>>
 
-    @Query("SELECT * FROM playlist_entity WHERE :id")
+    @Query("SELECT * FROM playlist_entity WHERE data_id in (:id)")
     fun getDetailById(id : String):LiveData<PlaylistVO>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
