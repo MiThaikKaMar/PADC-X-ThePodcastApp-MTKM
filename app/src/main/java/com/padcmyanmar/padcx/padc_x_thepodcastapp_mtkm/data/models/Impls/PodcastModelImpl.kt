@@ -14,16 +14,21 @@ import io.reactivex.schedulers.Schedulers
 
 object PodcastModelImpl : PodcastModel, BaseModel() {
     @SuppressLint("CheckResult")
-    override fun getGenresListFromApiAndSaveDB() {
+    override fun getGenresListFromApiAndSaveDB(onError: (String) -> Unit) {
         mPodcastApi.getGenresList(PARAM_API_VALUE, VALUE_TOP_LEVEL_ONLY)
             .map {
                 it.genres
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                mPodcastDB.podcastDao().setGenresList(it ?: listOf())
-            }
+            .subscribe ({
+                it?.let {
+                    mPodcastDB.podcastDao().setGenresList(it ?: listOf())
+                }
+
+            },{
+                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
+            })
     }
 
 
@@ -32,15 +37,17 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
     }
 
     @SuppressLint("CheckResult")
-    override fun getRandomEpisodeFromApiAndSaveDB() {
+    override fun getRandomEpisodeFromApiAndSaveDB(onError: (String) -> Unit) {
         mPodcastApi.getRandomEpisode(PARAM_API_VALUE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe ({
                 it?.let {
                     mPodcastDB.podcastDao().setRandomEpisode(it)
                 }
-            }
+            },{
+                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
+            })
     }
 
 
@@ -49,18 +56,20 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
     }
 
     @SuppressLint("CheckResult")
-    override fun getPlayListFromApiAndSaveDB() {
+    override fun getPlayListFromApiAndSaveDB(onError: (String) -> Unit) {
         mPodcastApi.getPlayList(PODCAST_ID, VALUE_TYPE, VALUE_LAST_TIMESTAMP, VALUE_SORT,PARAM_API_VALUE)
             .map {
                 it.items
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe ({
                 it?.let {
                     mPodcastDB.podcastDao().setPlayList(it)
                 }
-            }
+            },{
+                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
+            })
     }
 
     override fun getPlayList(): LiveData<List<PlaylistVO>> {
@@ -68,7 +77,7 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
     }
 
     @SuppressLint("CheckResult")
-    override fun getDetailFromApiAndSaveDB(detailId: String,onSuccess: (detail : DetailVO) -> Unit) {
+    override fun getDetailFromApiAndSaveDB(detailId: String,onSuccess: (detail : DetailVO) -> Unit,onError: (String) -> Unit) {
         mPodcastApi.getDetail(detailId, PARAM_API_VALUE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -76,8 +85,7 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
                 mPodcastDB.podcastDao().setDetail(it)
                 onSuccess(it)
             },{
-                Log.e("Error",it.toString())
-
+          onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
             })
     }
 

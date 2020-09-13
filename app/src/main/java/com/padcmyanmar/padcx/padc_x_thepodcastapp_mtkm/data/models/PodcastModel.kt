@@ -5,16 +5,16 @@ import androidx.lifecycle.LiveData
 import com.padcmyanmar.padcx.padc_x_thepodcastapp_mtkm.data.vos.*
 
 interface PodcastModel  {
-    fun getGenresListFromApiAndSaveDB()
+    fun getGenresListFromApiAndSaveDB(onError: (String) -> Unit)
     fun getGenresList():LiveData<List<GeneresVO>>
 
-    fun getRandomEpisodeFromApiAndSaveDB()
+    fun getRandomEpisodeFromApiAndSaveDB(onError: (String) -> Unit)
     fun getRandomEpisode():LiveData<RandomVO>
 
-    fun getPlayListFromApiAndSaveDB()
+    fun getPlayListFromApiAndSaveDB(onError: (String) -> Unit)
     fun getPlayList(): LiveData<List<PlaylistVO>>
 
-    fun getDetailFromApiAndSaveDB(detailId : String,onSuccess: (detail:DetailVO) -> Unit)
+    fun getDetailFromApiAndSaveDB(detailId : String,onSuccess: (detail:DetailVO) -> Unit,onError: (String) -> Unit)
     fun getDeatil(detailId : String): LiveData<DetailVO>
     fun getDetailById(detailId: String):LiveData<PlaylistVO>
 

@@ -39,3 +39,4 @@ const val DOWNLOADPAGE = "downlod"
 const val PLAYER_TYPE_STREAMING= "streaming"
 const val PLAYER_TYPE_FILE= "assetfile"
 
+const val EM_NO_INTERNET_CONNECTION = "No Internet Connection"
