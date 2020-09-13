@@ -16,7 +16,7 @@ class DetailPresenterImpl : DetailPresenter, AbstractBasePresenter<DetailView>()
     var list : List<DetailVO> = listOf()
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner,id:String) {
-        mPodcastModel.getDetailFromApiAndSaveDB(id,onSuccess = {})
+        mPodcastModel.getDetailFromApiAndSaveDB(id,onSuccess = {},onError = {})
 
         requestDetail(lifecycleOwner,id)
     }
